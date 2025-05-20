@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Suite" preserve-order="true">
+
+<test thread-count="5" name="Actor">
+    <classes>
+      <class name="testcase.LoginTest"/>
+      <class name="testcase.CreateReseller"/>
+       <class name="testcase.Logout"/>
+    </classes>
+
+  </test> <!-- Test -->
+
+
+  <test thread-count="5" name="UserOfActor">
+    <classes>
+       <class name="testcase.LoginTest"/>
+       <class name="testcase.ResellerUser"/>
+        <class name="testcase.Logout"/>
+    </classes>
+
+  </test> <!-- Test -->
+ 
+ <test thread-count="5" name="Admin">
+    <classes>
+       <class name="testcase.LoginWithResellerUser"/>
+       <class name="testcase.CreateRetailer"/>
+       <class name="testcase.RetailerUserTest"/>
+        <class name="testcase.Logout"/>
+    </classes>
+
+  </test> <!-- Test -->
+
+<test thread-count="5" name="EndUser">
+    <classes>
+       <class name="testcase.LoginWithRetailerUser"/>
+       <class name="testcase.CreateCustomer"/>
+       <class name="testcase.Logout"/>
+    </classes>
+
+  </test> <!-- Test -->
+
+
+</suite> <!-- Suite -->
