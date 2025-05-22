@@ -3,14 +3,14 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Actor(failed)">
     <classes>
-      <class name="testcase.DeviceRegistrationTest">
+      <class name="testcase.LoginTest">
         <methods>
           <include name="setup"/>
-          <include name="deviceRegistration"/>
           <include name="report"/>
           <include name="flush"/>
+          <include name="LoginWithSuperAdmin"/>
         </methods>
-      </class> <!-- testcase.DeviceRegistrationTest -->
+      </class> <!-- testcase.LoginTest -->
     </classes>
   </test> <!-- Actor(failed) -->
 </suite> <!-- Failed suite [Suite] -->

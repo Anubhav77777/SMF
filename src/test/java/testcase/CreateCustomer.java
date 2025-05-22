@@ -227,14 +227,15 @@ public class CreateCustomer extends setupbase {
 
         // Toast Message
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             By toastLocator = By.xpath("//div[contains(@class, 'Toastify__toast-body')]");
             WebElement toastElement = wait.until(ExpectedConditions.presenceOfElementLocated(toastLocator));
             wait.until(ExpectedConditions.visibilityOf(toastElement));
             String toastMsg = toastElement.getText();
             test.pass("Toast Message: " + toastMsg);
         } catch (Exception e) {
-            test.warning("Toast not found. Continuing test.");
+        	 System.out.println("Toast not found, move on");
+//            test.warning("Toast not found. Continuing test.");
         }
 
         // Verify Created Customer

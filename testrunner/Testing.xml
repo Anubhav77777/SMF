@@ -7,8 +7,8 @@
 
 <test thread-count="5" name="Actor">
     <classes>
-      <class name="testcase.LoginWithRetailerUser"/>
-      <class name="testcase.DeviceRegistrationTest"/>
+      
+       <class name="testcase.LoginTest"/>
        <class name="testcase.Logout"/>
     </classes>
 

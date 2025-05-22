@@ -30,6 +30,14 @@ public class LogoutPage extends setupbase{
 	 WebElement logoutbutton ;
 	
 	
+	
+	 @FindBy(xpath="//iframe[@id='fc_widget']") 
+	 WebElement chatbotFrame;
+	 
+	 @FindBy(xpath="//div[@class='d_hotline minimize  ']") 
+	 WebElement chatbotClose;
+	
+	
 	public void ClickIcon() {
 		icon.click();
 	}
@@ -39,6 +47,17 @@ public class LogoutPage extends setupbase{
 	public void LogoutIcon() {
 		logoutbutton.click();
 	}
+	
+	
+	 public void  setchatbotFrame() {
+		 driver.switchTo().frame(chatbotFrame);
+		 chatbotClose.click();
+		 driver.switchTo().defaultContent();
+		 
+			}
+	
+	
+	
 	
 //	public void Controlswitch() {
 //		 driver.switchTo().frame(switchcontrol);

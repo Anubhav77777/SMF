@@ -40,7 +40,7 @@ public class test extends setupbase {
 
             test.info("Validating URL after login");
             AssertJUnit.assertEquals(actualUrl, expectedUrl);
-
+            Thread.sleep(1000);
             test.pass("Login test passed. Navigated to: " + actualUrl);
         } catch (AssertionError ae) {
             test.fail("Assertion failed: " + ae.getMessage());

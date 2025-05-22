@@ -271,6 +271,19 @@ public class DeviceRegistrationTest extends setupbase {
         } catch (Exception e) {
             test.fail("❌ Unexpected error during device registration: " + e.getMessage());
         }
+        
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            By toastLocator = By.xpath("//div[contains(@class, 'Toastify__toast-body')]");
+            WebElement toastElement = wait.until(ExpectedConditions.presenceOfElementLocated(toastLocator));
+            wait.until(ExpectedConditions.visibilityOf(toastElement));
+            String toastMsg = toastElement.getText();
+            test.pass("Toast Message: " + toastMsg);
+        } catch (Exception e) {
+        	 System.out.println("Toast not found, move on");
+//            test.warning("Toast not found. Continuing test.");
+        }
+        
 
         // Validation of device id in UI
         String tt = null;

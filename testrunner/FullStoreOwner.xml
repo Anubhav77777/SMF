@@ -36,6 +36,7 @@
     <classes>
        <class name="testcase.LoginWithRetailerUser"/>
        <class name="testcase.CreateCustomer"/>
+       <class name="testcase.DeviceRegistrationTest"/>
        <class name="testcase.Logout"/>
     </classes>
 

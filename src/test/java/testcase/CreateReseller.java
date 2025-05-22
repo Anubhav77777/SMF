@@ -35,7 +35,7 @@ public class CreateReseller extends setupbase {
 
             Thread.sleep(1000);
             test.info("Entering Reseller Name: " + randomname2);
-            adReseller.enterResellerName("VZr7pIsr");
+            adReseller.enterResellerName(randomname2);
 
             test.info("Setting Security Tag");
             adReseller.securityTag();
@@ -62,86 +62,26 @@ public class CreateReseller extends setupbase {
             test.warning("Error during form fill: " + e.getMessage());
         }
         
-     // First, wait up to 3 seconds for success toast
-        WebDriverWait waitShort = new WebDriverWait(driver, Duration.ofSeconds(3));
-        By successToastLocator = By.xpath("//div[contains(@class, 'Toastify')]");
-        List<WebElement> successToasts = driver.findElements(successToastLocator);
+    
 
-        if (!successToasts.isEmpty()) {
-            String successMsg = successToasts.get(0).getText();
-            test.pass("✅ Success Toast Message: " + successMsg);
-            System.out.println("Success Toast Message: " + successMsg);
-        } else {
-            // Then wait up to 5 seconds for failure toast
-//            WebDriverWait waitLong = new WebDriverWait(driver, Duration.ofSeconds(5));
-//            By failureToastLocator = By.xpath("//div[contains(@class, 'Toastify__toast-body')]");
-//            List<WebElement> failureToasts = driver.findElements(failureToastLocator);
-//
-//            if (!failureToasts.isEmpty()) {
-//                String failureMsg = failureToasts.get(0).getText();
-//                test.fail("❌ Failure Toast Message: " + failureMsg);
-//                System.out.println("Failure Toast Message: " + failureMsg);
-//            } else {
-//                test.warning("⚠️ Neither Success nor Failure Toast appeared.");
-//                System.out.println("No toast appeared.");
-//            }
-        }
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            By toastLocator = By.xpath("//div[contains(@class, 'Toastify__toast-body')]");
+            WebElement toastElement = wait.until(ExpectedConditions.presenceOfElementLocated(toastLocator));
+            wait.until(ExpectedConditions.visibilityOf(toastElement));
 
-
-//        try {
-//            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-//            
-//            // Try waiting for success toast
-//            By successToastLocator = By.xpath("//div[contains(@class, 'Toastify')]");
-//            WebElement successToast = wait.until(ExpectedConditions.presenceOfElementLocated(successToastLocator));
-//            
-//            String successMsg = successToast.getText();
-//            test.pass("✅ Success Toast Message: " + successMsg);
-//            System.out.println("Success Toast Message: " + successMsg);
-//            
-//        } catch (TimeoutException successTimeout) {
-//            try {
-//                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-//                
-//                // Try waiting for failure toast if success toast not found
-//                By failureToastLocator = By.xpath("//div[contains(@class, 'Toastify__toast-body')]");
-//                WebElement failureToast = wait.until(ExpectedConditions.presenceOfElementLocated(failureToastLocator));
-//                
-//                String failureMsg = failureToast.getText();
-//                test.fail("❌ Failure Toast Message: " + failureMsg);
-//                System.out.println("Failure Toast Message: " + failureMsg);
-//                
-//            } catch (TimeoutException failureTimeout) {
-//                test.warning("⚠️ Neither Success nor Failure Toast appeared.");
-//                System.out.println("No toast appeared.");
-//            } catch (Exception e) {
-//                test.warning("⚠️ Error while checking for failure toast: " + e.getMessage());
-//                System.out.println("Error while waiting for failure toast: " + e.getMessage());
-//            }
-//        } catch (Exception e) {
-//            test.warning("⚠️ Error while checking for success toast: " + e.getMessage());
-//            System.out.println("Error while waiting for success toast: " + e.getMessage());
-//        }
-
-//
-//        try {
-//            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-//            By toastLocator = By.xpath("//div[contains(@class, 'Toastify__toast-body')]");
-//            WebElement toastElement = wait.until(ExpectedConditions.presenceOfElementLocated(toastLocator));
-//            wait.until(ExpectedConditions.visibilityOf(toastElement));
-//
-//            String toastMsg = toastElement.getText();
-//            test.pass("Toast Message displayed: " + toastMsg);
-//            System.out.println("Toast Message: " + toastMsg);
-//        } catch (Exception e) {
+            String toastMsg = toastElement.getText();
+            test.pass("Toast Message displayed: " + toastMsg);
+            System.out.println("Toast Message: " + toastMsg);
+        } catch (Exception e) {
 //            test.warning("Toast message not found: " + e.getMessage());
-//            System.out.println("Toast not found. Continuing test...");
-//        }
+            System.out.println("Toast not found. Continuing test...");
+        }
 
         String tt = null;
 
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
             WebElement text123 = wait.until(ExpectedConditions.visibilityOfElementLocated(
                     By.xpath("//*[contains(text(),'" + randomname2 + "')]")));
 

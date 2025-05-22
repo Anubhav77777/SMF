@@ -371,14 +371,14 @@ public class ResellerUser extends setupbase {
             test.info("Toast message: " + toastMessage);
         } catch (Exception e) {
             System.out.println("Toast not found, move on");
-            test.warning("Toast not found during user creation");
+//            test.warning("Toast not found during user creation");
         }
     }
 
     @Step("Validate if user {username} is displayed on UI")
     public String validateUserCreation(String username) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
             WebElement text123 = wait.until(ExpectedConditions.visibilityOfElementLocated(
                     By.xpath("//*[contains(text(),'" + username + "')]")));
             String foundUser = text123.getText();

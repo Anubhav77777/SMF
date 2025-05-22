@@ -48,8 +48,12 @@
 //
 package testcase;
 
+import java.time.Duration;
 import java.util.Map;
 import java.util.Scanner;
+
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -90,25 +94,44 @@ public class LoginWithRetailerUser extends setupbase {
             lgn.setLoginButton();
             test.log(Status.INFO, "Clicked on Login button.");
             
-            // Wait for login to complete
-            Thread.sleep(15000);
-            test.log(Status.INFO, "Waited for login to complete.");
+            Thread.sleep(10000);
+            
+                // Define all expected URLs
+                String expectedUrl1 = "https://testsmartmobilefinance.wrtual.in/admin/home/view";
+                String expectedUrl2 = "https://stagesmartmobilefinance.wrtual.in/admin/home/view";
+                String expectedUrl3 = "https://uatsmartmobilefinance.wrtual.in/admin/home/view";
 
-            // Verify login by checking the URL
-            String actualurl = setupbase.driver.getCurrentUrl();
-            String expectedurl = "https://testsmartmobilefinance.wrtual.in/admin/home/view";
-            System.out.println(actualurl);
+                // Wait until any one of the expected URLs is loaded
+                WebDriverWait wait = new WebDriverWait(setupbase.driver, Duration.ofSeconds(15));
+                wait.until(driver -> {
+                    String currentUrl = driver.getCurrentUrl();
+                    return currentUrl.equals(expectedUrl1) ||
+                           currentUrl.equals(expectedUrl2) ||
+                           currentUrl.equals(expectedUrl3);
+                });
 
-            // Log the result of the URL verification
-            if (actualurl.equals(expectedurl)) {
-                test.log(Status.PASS, "Login successful. Redirected to the dashboard.");
-            } else {
-                test.log(Status.FAIL, "Login failed. Redirected to a different URL.");
+                test.log(Status.INFO, "Waited for login to complete.");
+
+                // Verify login by checking the URL
+                String actualUrl = setupbase.driver.getCurrentUrl();
+                System.out.println(actualUrl);
+
+                // Log the result of the URL verification
+                if (actualUrl.equals(expectedUrl1) || actualUrl.equals(expectedUrl2) || actualUrl.equals(expectedUrl3)) {
+                    test.log(Status.PASS, "Login successful. Redirected to the dashboard.");
+                } else {
+                    test.log(Status.FAIL, "Login failed. Redirected to a different URL.");
+                }
+
+                // Final assertion
+                Assert.assertTrue(
+                    actualUrl.equals(expectedUrl1) || actualUrl.equals(expectedUrl2) || actualUrl.equals(expectedUrl3),
+                    "Actual URL did not match any of the expected dashboard URLs."
+                );
+
+            } catch (Exception e) {
+                test.log(Status.FAIL, "An error occurred during login: " + e.getMessage());
+                throw e; // Rethrow the exception to fail the test
             }
-            Assert.assertEquals(actualurl, expectedurl);
-        } catch (Exception e) {
-            test.log(Status.FAIL, "An error occurred during login: " + e.getMessage());
-            throw e; // Rethrow the exception to fail the test
         }
-    }
-}
+        }

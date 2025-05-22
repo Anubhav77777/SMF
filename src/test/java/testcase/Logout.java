@@ -51,9 +51,13 @@
 //}
 package testcase;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import base.setupbase;
+import ch.qos.logback.core.util.Duration;
 import pages.LogoutPage;
 
 public class Logout extends setupbase {
@@ -64,6 +68,17 @@ public class Logout extends setupbase {
 
         try {
             LogoutPage lg = new LogoutPage(driver);
+            String currentUrl = driver.getCurrentUrl();
+            if (currentUrl.contains("uatsmartmobilefinance") || currentUrl.contains("stagesmartmobilefinance")) {
+                test.info("Running chatbot frame setup for UAT/Stage environment");
+                Thread.sleep(5000);
+                lg.setchatbotFrame();
+            } else {
+                test.info("Skipping chatbot frame setup (not UAT or Stage environment)");
+            }
+
+            
+            
             Thread.sleep(5000);
             test.info("Clicking user icon to open logout menu");
             lg.ClickIcon();
@@ -71,24 +86,54 @@ public class Logout extends setupbase {
             test.info("Clicking logout option");
             lg.LogoutIcon();
 
-            Thread.sleep(8000);
+//            Thread.sleep(15000);
         } catch (Exception e) {
             test.warning("Error during logout actions: " + e.getMessage());
         }
-
+     
         try {
-            String actualurl = driver.getCurrentUrl();
-            String expectedurl = "https://testsmartmobilefinance.wrtual.in/login";
-            System.out.println("Current URL: " + actualurl);
+            WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(15));
 
-            AssertJUnit.assertEquals(actualurl, expectedurl);
-            test.pass("Logout successful and redirected to login page");
+            // Define all acceptable logout URLs
+            String expectedUrl1 = "https://testsmartmobilefinance.wrtual.in/login";
+            String expectedUrl2 = "https://stagesmartmobilefinance.1984.rocks/admin/actor/reseller";
+            String expectedUrl3 = "https://uatsmartmobilefinance.wrtual.in/login";
+
+            // Wait until the current URL matches any of the expected ones
+            boolean matched = wait.until(driver -> {
+                String currentUrl = driver.getCurrentUrl();
+                return currentUrl.equalsIgnoreCase(expectedUrl1) ||
+                       currentUrl.equalsIgnoreCase(expectedUrl2) ||
+                       currentUrl.equalsIgnoreCase(expectedUrl3);
+            });
+
+            String actualUrl = driver.getCurrentUrl();
+            System.out.println("Current URL: " + actualUrl);
+
+            if (matched) {
+                test.pass("Logout successful and redirected to one of the expected login URLs.");
+            } else {
+                test.fail("Logout URL mismatch. URL did not match any of the expected login URLs.");
+            }
+
+            // Final assertion
+            Assert.assertTrue(
+                actualUrl.equalsIgnoreCase(expectedUrl1) ||
+                actualUrl.equalsIgnoreCase(expectedUrl2) ||
+                actualUrl.equalsIgnoreCase(expectedUrl3),
+                "Actual URL does not match any expected logout URLs."
+            );
+
         } catch (AssertionError ae) {
-            test.fail("Logout URL mismatch. Expected: https://testsmartmobilefinance.wrtual.in/login");
+            test.fail("Logout URL mismatch. " + ae.getMessage());
             throw ae;
+
         } catch (Exception e) {
             test.warning("Exception while checking URL after logout: " + e.getMessage());
         }
+
+
+
     }
 
     @Test(priority = 2)

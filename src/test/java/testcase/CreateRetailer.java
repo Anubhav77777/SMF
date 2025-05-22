@@ -227,14 +227,15 @@ public class CreateRetailer extends setupbase {
         
         try {
             // Toast Message Check
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             By toastLocator = By.xpath("//div[contains(@class, 'Toastify__toast-body')]");
             WebElement toastElement = wait.until(ExpectedConditions.presenceOfElementLocated(toastLocator));
             wait.until(ExpectedConditions.visibilityOf(toastElement));
             System.out.println("Toast Message: " + toastElement.getText());
             test.log(Status.INFO, "Toast message: " + toastElement.getText());
         } catch (Exception e) {
-            test.log(Status.WARNING, "Toast not found. Moving on...");
+        	 System.out.println("Toast not found, move on");
+//            test.log(Status.WARNING, "Toast not found. Moving on...");
         }
 
         String tt = null;

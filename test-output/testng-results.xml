@@ -1,45 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-05-16T14:31:27 IST" name="Suite" finished-at="2025-05-16T14:33:15 IST" duration-ms="107569">
+  <suite started-at="2025-05-22T17:54:42 IST" name="Suite" finished-at="2025-05-22T17:56:05 IST" duration-ms="82725">
     <groups>
     </groups>
-    <test started-at="2025-05-16T14:31:27 IST" name="Actor" finished-at="2025-05-16T14:33:15 IST" duration-ms="107569">
-      <class name="testcase.DeviceRegistrationTest">
-        <test-method signature="deviceRegistration()[pri:0, instance:testcase.DeviceRegistrationTest@6c372fe6]" started-at="2025-05-16T14:32:11 IST" name="deviceRegistration" finished-at="2025-05-16T14:32:58 IST" duration-ms="47012" status="PASS">
+    <test started-at="2025-05-22T17:54:42 IST" name="Actor" finished-at="2025-05-22T17:56:05 IST" duration-ms="82725">
+      <class name="testcase.LoginTest">
+        <test-method is-config="true" signature="report()[pri:0, instance:testcase.LoginTest@379614be]" started-at="2025-05-22T17:54:42 IST" name="report" finished-at="2025-05-22T17:54:42 IST" duration-ms="227" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- deviceRegistration -->
-      </class> <!-- testcase.DeviceRegistrationTest -->
+        </test-method> <!-- report -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:testcase.LoginTest@379614be]" started-at="2025-05-22T17:54:42 IST" name="setup" finished-at="2025-05-22T17:54:59 IST" duration-ms="16821" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="LoginWithSuperAdmin()[pri:1, instance:testcase.LoginTest@379614be]" started-at="2025-05-22T17:54:59 IST" name="LoginWithSuperAdmin" finished-at="2025-05-22T17:55:36 IST" duration-ms="36516" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginWithSuperAdmin -->
+        <test-method is-config="true" signature="flush()[pri:0, instance:testcase.LoginTest@379614be]" started-at="2025-05-22T17:56:05 IST" name="flush" finished-at="2025-05-22T17:56:05 IST" duration-ms="379" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- flush -->
+      </class> <!-- testcase.LoginTest -->
       <class name="testcase.Logout">
-        <test-method signature="logout()[pri:1, instance:testcase.Logout@58594a11]" started-at="2025-05-16T14:32:58 IST" name="logout" finished-at="2025-05-16T14:33:12 IST" duration-ms="13510" status="PASS">
+        <test-method signature="logout()[pri:1, instance:testcase.Logout@a307a8c]" started-at="2025-05-22T17:55:36 IST" name="logout" finished-at="2025-05-22T17:56:02 IST" duration-ms="26145" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- logout -->
-        <test-method signature="TermSession()[pri:2, instance:testcase.Logout@58594a11]" started-at="2025-05-16T14:33:12 IST" name="TermSession" finished-at="2025-05-16T14:33:15 IST" duration-ms="3129" status="PASS">
+        <test-method signature="TermSession()[pri:2, instance:testcase.Logout@a307a8c]" started-at="2025-05-22T17:56:02 IST" name="TermSession" finished-at="2025-05-22T17:56:05 IST" duration-ms="3110" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TermSession -->
       </class> <!-- testcase.Logout -->
-      <class name="testcase.LoginWithRetailerUser">
-        <test-method is-config="true" signature="report()[pri:0, instance:testcase.LoginWithRetailerUser@1e81f160]" started-at="2025-05-16T14:31:27 IST" name="report" finished-at="2025-05-16T14:31:27 IST" duration-ms="253" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- report -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:testcase.LoginWithRetailerUser@1e81f160]" started-at="2025-05-16T14:31:27 IST" name="setup" finished-at="2025-05-16T14:31:38 IST" duration-ms="10814" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="LoginWithRetaileruser()[pri:0, instance:testcase.LoginWithRetailerUser@1e81f160]" started-at="2025-05-16T14:31:38 IST" name="LoginWithRetaileruser" finished-at="2025-05-16T14:32:11 IST" duration-ms="32997" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- LoginWithRetaileruser -->
-        <test-method is-config="true" signature="flush()[pri:0, instance:testcase.LoginWithRetailerUser@1e81f160]" started-at="2025-05-16T14:33:15 IST" name="flush" finished-at="2025-05-16T14:33:15 IST" duration-ms="334" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- flush -->
-      </class> <!-- testcase.LoginWithRetailerUser -->
     </test> <!-- Actor -->
   </suite> <!-- Suite -->
 </testng-results>
