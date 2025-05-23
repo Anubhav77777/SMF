@@ -82,7 +82,7 @@ import org.testng.annotations.BeforeTest;
 	        // Set up WebDriver
 	        WebDriverManager.chromedriver().setup();
 	        driver = new ChromeDriver();
-	        driver.get(prop.getProperty("stageurl"));
+	        driver.get(prop.getProperty("uaturl"));
 	        driver.manage().window().maximize();
 	        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
 	    

@@ -33,7 +33,7 @@ public class test extends setupbase {
 
             test.info("Clicking login button");
             lgn.setLoginButton();
-            Thread.sleep(10000);
+            Thread.sleep(20000);
 
             String actualUrl = driver.getCurrentUrl();
             String expectedUrl = "https://stagesmartmobilefinance.1984.rocks/admin/actor/reseller";

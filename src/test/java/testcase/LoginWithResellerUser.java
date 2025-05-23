@@ -97,20 +97,21 @@ public class LoginWithResellerUser extends setupbase {
                 String expectedUrl1 = "https://testsmartmobilefinance.wrtual.in/admin/customise/retailer";
                 String expectedUrl2 = "https://stagesmartmobilefinance.wrtual.in/admin/customise/retailer";
                 String expectedUrl3 = "https://uatsmartmobilefinance.wrtual.in/admin/customise/retailer";
-
+                String expectedUrl4 = "https://smflock.com/admin/customise/retailer";
                 // Wait until any one of the expected URLs is loaded
                 wait.until(driver -> {
                     String currentUrl = driver.getCurrentUrl();
                     return currentUrl.equals(expectedUrl1) ||
                            currentUrl.equals(expectedUrl2) ||
-                           currentUrl.equals(expectedUrl3);
+                           currentUrl.equals(expectedUrl3) ||
+                           currentUrl.equals(expectedUrl4);
                 });
 
                 String actualUrl = driver.getCurrentUrl();
                 test.log(Status.INFO, "Current URL: " + actualUrl);
 
                 // Log the result of the URL verification
-                if (actualUrl.equals(expectedUrl1) || actualUrl.equals(expectedUrl2) || actualUrl.equals(expectedUrl3)) {
+                if (actualUrl.equals(expectedUrl1) || actualUrl.equals(expectedUrl2) || actualUrl.equals(expectedUrl3) || actualUrl.equals(expectedUrl4)) {
                     test.log(Status.PASS, "Login successful. Redirected to the expected dashboard.");
                 } else {
                     test.log(Status.FAIL, "Login failed. Redirected to a different URL.");
@@ -118,7 +119,7 @@ public class LoginWithResellerUser extends setupbase {
 
                 // Assert that one of the expected URLs matches
                 Assert.assertTrue(
-                    actualUrl.equals(expectedUrl1) || actualUrl.equals(expectedUrl2) || actualUrl.equals(expectedUrl3),
+                    actualUrl.equals(expectedUrl1) || actualUrl.equals(expectedUrl2) || actualUrl.equals(expectedUrl3) || actualUrl.equals(expectedUrl4),
                     "Actual URL did not match any of the expected URLs."
                 );
                 

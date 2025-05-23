@@ -98,13 +98,15 @@ public class Logout extends setupbase {
             String expectedUrl1 = "https://testsmartmobilefinance.wrtual.in/login";
             String expectedUrl2 = "https://stagesmartmobilefinance.1984.rocks/admin/actor/reseller";
             String expectedUrl3 = "https://uatsmartmobilefinance.wrtual.in/login";
+            String expectedUrl4 = "https://smflock.com/login";
 
             // Wait until the current URL matches any of the expected ones
             boolean matched = wait.until(driver -> {
                 String currentUrl = driver.getCurrentUrl();
                 return currentUrl.equalsIgnoreCase(expectedUrl1) ||
                        currentUrl.equalsIgnoreCase(expectedUrl2) ||
-                       currentUrl.equalsIgnoreCase(expectedUrl3);
+                       currentUrl.equalsIgnoreCase(expectedUrl3) || 
+                       currentUrl.equalsIgnoreCase(expectedUrl4);
             });
 
             String actualUrl = driver.getCurrentUrl();
@@ -120,7 +122,8 @@ public class Logout extends setupbase {
             Assert.assertTrue(
                 actualUrl.equalsIgnoreCase(expectedUrl1) ||
                 actualUrl.equalsIgnoreCase(expectedUrl2) ||
-                actualUrl.equalsIgnoreCase(expectedUrl3),
+                actualUrl.equalsIgnoreCase(expectedUrl3) || 
+                actualUrl.equalsIgnoreCase(expectedUrl4),
                 "Actual URL does not match any expected logout URLs."
             );
 

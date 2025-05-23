@@ -107,6 +107,10 @@ public class LoginTest extends setupbase {
         	user = prop.getProperty("test_user");
         	pwd = prop.getProperty("test_pwd");
             test.log(Status.INFO, "Detected Test environment. Using Test credentials.");
+        } else if (Url.contains("smflock.com")) {
+        	user = prop.getProperty("prod_user");
+        	pwd = prop.getProperty("prod_pwd");
+            test.log(Status.INFO, "Detected Prod environment. Using Prod credentials.");
         } else {
             test.fail("Unknown environment detected from URL: " + Url);
             throw new RuntimeException("Unsupported environment: " + Url);
@@ -129,14 +133,15 @@ try {
             String expectedUrl1 = "https://testsmartmobilefinance.wrtual.in/admin/actor/reseller";
             String expectedUrl2 = "https://stagesmartmobilefinance.1984.rocks/admin/actor/reseller";
             String expectedUrl3 = "https://uatsmartmobilefinance.wrtual.in/admin/actor/reseller";
-
+            String expectedUrl4 = "https://smflock.com/admin/actor/reseller";
             // Wait until one of the URLs is matched
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
             boolean matched = wait.until(driver -> {
                 String currentUrl = driver.getCurrentUrl();
                 return currentUrl.equalsIgnoreCase(expectedUrl1) ||
                        currentUrl.equalsIgnoreCase(expectedUrl2) ||
-                       currentUrl.equalsIgnoreCase(expectedUrl3);
+                       currentUrl.equalsIgnoreCase(expectedUrl3) ||
+                       currentUrl.equalsIgnoreCase(expectedUrl4);
             });
             
             
@@ -156,7 +161,8 @@ try {
             Assert.assertTrue(
                 actualUrl.equalsIgnoreCase(expectedUrl1) ||
                 actualUrl.equalsIgnoreCase(expectedUrl2) ||
-                actualUrl.equalsIgnoreCase(expectedUrl3),
+                actualUrl.equalsIgnoreCase(expectedUrl3) ||
+                actualUrl.equalsIgnoreCase(expectedUrl4),
                 "Actual URL does not match any of the expected URLs."
             );
 
